@@ -8,7 +8,6 @@ var middleware = require("../middleware");
 //Comments New
 router.get("/new",middleware.isLoggedIn, function(req, res){
     // find campground by id
-    console.log(req.params.id);
     Campground.findById(req.params.id, function(err, campground){
         if(err){
             console.log(err);
@@ -38,6 +37,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                campground.comments.push(comment);
                campground.save();
                console.log(comment);
+               req.flash("success","Comment succesfully added")
                res.redirect('/campgrounds/' + campground._id);
            }
         });
@@ -73,6 +73,7 @@ router.delete("/:comment_id",middleware.checkCommentOwnership, function(req,res)
        if(err) {
            res.redirect("back");
        } else {
+           req.flash("success","comment deleted")
            res.redirect("/campgrounds/" + req.params.id);
        }
    });
