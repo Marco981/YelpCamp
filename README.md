@@ -1,7 +1,7 @@
 # YelpCamp Development Process
 A full-stack Node.js project from my web dev course with RESTful routing
 
-![home-page](home.png)
+
 
 ## Initial Setup
 * Add Landing Page
